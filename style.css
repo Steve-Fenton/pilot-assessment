@@ -1,3 +1,78 @@
+:root {
+    /* Primary Colors */
+    --primary-color: #667eea;
+    --primary-dark: #764ba2;
+    
+    /* Text Colors */
+    --text-primary: #333;
+    --text-heading-dark: #2d3748;
+    --text-heading-medium: #4a5568;
+    
+    /* Background Colors */
+    --bg-gradient-start: #667eea;
+    --bg-gradient-end: #764ba2;
+    --bg-white-translucent: rgba(255, 255, 255, 0.90);
+    --bg-primary-light: rgba(102, 126, 234, 0.05);
+    --bg-primary-medium: rgba(102, 126, 234, 0.1);
+    --bg-primary-hover: rgba(102, 126, 234, 0.2);
+    --bg-white: white;
+    
+    /* Heat Map Colors */
+    --heat-1: rgba(102, 126, 234, 0.1);
+    --heat-2: rgba(102, 126, 234, 0.3);
+    --heat-3: rgba(102, 126, 234, 0.6);
+    --heat-4: rgba(102, 126, 234, 0.9);
+    
+    /* Border Colors */
+    --border-silver: silver;
+    --border-transparent: transparent;
+    
+    /* Shadow Colors */
+    --shadow-light: rgba(0, 0, 0, 0.1);
+    
+    /* Spacing Values */
+    --spacing-xs: 8px;
+    --spacing-sm: 10px;
+    --spacing-md: 12px;
+    --spacing-lg: 15px;
+    --spacing-xl: 20px;
+    --spacing-2xl: 25px;
+    --spacing-3xl: 30px;
+    --spacing-4xl: 40px;
+    
+    /* Border Radius */
+    --radius-sm: 10px;
+    --radius-md: 15px;
+    --radius-lg: 20px;
+    
+    /* Font Weights */
+    --font-weight-medium: 600;
+    --font-weight-semibold: 700;
+    
+    /* Font Sizes */
+    --font-size-base: 1em;
+    --font-size-lg: 1.1em;
+    --font-size-xl: 1.3em;
+    --font-size-2xl: 1.5em;
+    --font-size-3xl: 2.2em;
+    
+    /* Layout Values */
+    --container-max-width: 1400px;
+    --sidebar-width: 400px;
+    --chart-height: 350px;
+    --table-width: 80%;
+    
+    /* Input Sizes */
+    --radio-size: 20px;
+    
+    /* Transitions */
+    --transition-smooth: all 0.3s ease;
+    
+    /* Box Shadows */
+    --shadow-card: 0 20px 40px var(--shadow-light);
+    --shadow-hover: 0 5px 15px var(--bg-primary-hover);
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -6,67 +81,67 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
     min-height: 100vh;
-    padding: 20px;
-    color: #333;
+    padding: var(--spacing-xl);
+    color: var(--text-primary);
 }
 
 .container {
-    max-width: 1400px;
+    max-width: var(--container-max-width);
     margin: 0 auto;
     display: grid;
-    grid-template-columns: 1fr 400px;
-    gap: 30px;
-    margin-block-end: 30px;
+    grid-template-columns: 1fr var(--sidebar-width);
+    gap: var(--spacing-3xl);
+    margin-block-end: var(--spacing-3xl);
 }
 
 .form-section {
-    background: rgba(255, 255, 255, 0.95);
+    background: var(--bg-white-translucent);
     backdrop-filter: blur(10px);
-    border-radius: 20px;
-    padding: 40px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-4xl);
+    box-shadow: var(--shadow-card);
 }
 
 .chart-section {
-    background: rgba(255, 255, 255, 0.95);
+    background: var(--bg-white-translucent);
     backdrop-filter: blur(10px);
-    border-radius: 20px;
-    padding: 30px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-3xl);
+    box-shadow: var(--shadow-card);
     position: sticky;
-    top: 20px;
+    top: var(--spacing-xl);
     height: fit-content;
 }
 
 .matrix-section {
-    background: rgba(255, 255, 255, 0.95);
+    background: var(--bg-white-translucent);
     backdrop-filter: blur(10px);
-    border-radius: 20px;
-    padding: 30px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-3xl);
+    box-shadow: var(--shadow-card);
 }
 
 h1 {
-    color: #2d3748;
-    margin-bottom: 30px;
+    color: var(--text-heading-dark);
+    margin-bottom: var(--spacing-3xl);
     text-align: center;
-    font-size: 2.2em;
-    font-weight: 700;
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-semibold);
 }
 
 h2 {
-    color: #4a5568;
-    margin: 30px 0 20px 0;
-    font-size: 1.5em;
-    font-weight: 600;
-    border-bottom: 3px solid #667eea;
-    padding-bottom: 10px;
+    color: var(--text-heading-medium);
+    margin: var(--spacing-3xl) 0 var(--spacing-xl) 0;
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-medium);
+    border-bottom: 3px solid var(--primary-color);
+    padding-bottom: var(--spacing-sm);
 }
 
 table {
-    width: 80%;
+    width: var(--table-width);
     margin: 0 auto;
 }
 
@@ -74,55 +149,51 @@ td {
     padding-block: 0.6em;
 }
 
-tr:first-of-type(td) {
-    border-right: 1px solid silver;
-}
-
 .question-group {
-    margin-bottom: 30px;
-    padding: 25px;
-    background: rgba(102, 126, 234, 0.05);
-    border-radius: 15px;
-    border-left: 5px solid #667eea;
+    margin-bottom: var(--spacing-3xl);
+    padding: var(--spacing-2xl);
+    background: var(--bg-primary-light);
+    border-radius: var(--radius-md);
+    border-left: 5px solid var(--primary-color);
 }
 
 .question {
-    font-weight: 600;
-    margin-bottom: 15px;
-    color: #2d3748;
-    font-size: 1.1em;
+    font-weight: var(--font-weight-medium);
+    margin-bottom: var(--spacing-lg);
+    color: var(--text-heading-dark);
+    font-size: var(--font-size-lg);
     line-height: 1.4;
 }
 
 .options {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: var(--spacing-md);
 }
 
 .option {
     display: flex;
     align-items: flex-start;
-    gap: 12px;
-    padding: 15px;
-    background: white;
-    border-radius: 10px;
-    border: 2px solid transparent;
+    gap: var(--spacing-md);
+    padding: var(--spacing-lg);
+    background: var(--bg-white);
+    border-radius: var(--radius-sm);
+    border: 2px solid var(--border-transparent);
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: var(--transition-smooth);
 }
 
 .option:hover {
-    border-color: #667eea;
+    border-color: var(--primary-color);
     transform: translateX(5px);
-    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+    box-shadow: var(--shadow-hover);
 }
 
 .option input[type="radio"] {
     margin-top: 2px;
-    width: 18px;
-    height: 18px;
-    accent-color: #667eea;
+    width: var(--radio-size);
+    height: var(--radio-size);
+    accent-color: var(--primary-color);
 }
 
 .option-text {
@@ -131,74 +202,74 @@ tr:first-of-type(td) {
 }
 
 .option-level {
-    font-weight: 700;
-    color: #667eea;
-    margin-right: 8px;
+    font-weight: var(--font-weight-semibold);
+    color: var(--primary-color);
+    margin-right: var(--spacing-xs);
 }
 
 .option-description {
-    color: #4a5568;
+    color: var(--text-heading-medium);
 }
 
 .option.selected {
-    border-color: #667eea;
-    background: rgba(102, 126, 234, 0.1);
+    border-color: var(--primary-color);
+    background: var(--bg-primary-medium);
 }
 
 #spiderChart {
     width: 100%;
-    height: 350px;
-    margin-top: 20px;
+    height: var(--chart-height);
+    margin-top: var(--spacing-xl);
 }
 
 .chart-title {
     text-align: center;
-    font-size: 1.3em;
-    font-weight: 600;
-    color: #2d3748;
-    margin-bottom: 15px;
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-medium);
+    color: var(--text-heading-dark);
+    margin-bottom: var(--spacing-lg);
 }
 
 .scores {
-    margin-top: 20px;
-    padding: 20px;
-    background: rgba(102, 126, 234, 0.1);
-    border-radius: 10px;
+    margin-top: var(--spacing-xl);
+    padding: var(--spacing-xl);
+    background: var(--bg-primary-medium);
+    border-radius: var(--radius-sm);
 }
 
 .score-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 10px;
-    padding: 8px 0;
+    margin-bottom: var(--spacing-sm);
+    padding: var(--spacing-xs) 0;
 }
 
 .score-label {
-    font-weight: 600;
-    color: #2d3748;
+    font-weight: var(--font-weight-medium);
+    color: var(--text-heading-dark);
 }
 
 .score-value {
-    font-weight: 700;
-    color: #667eea;
-    font-size: 1.1em;
+    font-weight: var(--font-weight-semibold);
+    color: var(--primary-color);
+    font-size: var(--font-size-lg);
 }
 
 .heat_1 {
-    background-color: #E6F3FF;
+    background-color: var(--heat-1);
 }
 
 .heat_2 {
-    background-color: #87CEEB;
+    background-color: var(--heat-2);
 }
 
 .heat_3 {
-    background-color: #4682B4 ;
+    background-color: var(--heat-3);
 }
 
 .heat_4 {
-    background-color: #191970;
+    background-color: var(--heat-4);
 }
 
 @media (max-width: 1200px) {

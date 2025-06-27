@@ -201,3 +201,4 @@ document.addEventListener('change', function(e) {
 
 // Initial chart draw
 drawSpiderChart();
+drawMatrix();
