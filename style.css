@@ -124,6 +124,10 @@ body {
 }
 
 .share-button {
+    padding-block-start: 2em;
+}
+
+.share-button a {
     background: #667eea;
     color: white;
     border: none;
@@ -154,6 +158,23 @@ h2 {
 table {
     width: var(--table-width);
     margin: 0 auto;
+    table-layout: fixed;
+}
+
+.rotated-header {
+  height: 120px;
+  width: 40px;
+  vertical-align: bottom;
+  text-align: center;
+  padding: 0;
+}
+
+.rotated-header div {
+  transform: rotate(90deg) translateX(-50px) translateY(45px); /* Adjust -20px as needed */
+  transform-origin: center bottom;
+  white-space: nowrap;
+  width: 120px;
+  margin: 0 auto;
 }
 
 td {

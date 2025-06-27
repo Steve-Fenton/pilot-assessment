@@ -709,7 +709,7 @@
         </div>
 
         <div class="chart-section">
-            <div class="chart-title">Maturity Spider Diagram</div>
+            <div class="chart-title">Results</div>
             <canvas id="spiderChart"></canvas>
             <div class="scores">
                 <div class="score-item">
@@ -732,28 +732,26 @@
                     <span class="score-label">Measurement:</span>
                     <span class="score-value" id="measurementScore">0.0</span>
                 </div>
-                <div>
-                    <a onclick="copyURLToClipboard()" class="share-button">📋 Copy Shareable Link</a>
-                </div>
+            </div>
+
+            <table>
+                <thead>
+                    <th>Category</th>
+                    <th class="rotated-header" width="30px"><div>Provisional</div></th>
+                    <th class="rotated-header"><div>Operational</div></th>
+                    <th class="rotated-header"><div>Scalable</div></th>
+                    <th class="rotated-header"><div>Optimizing</div></th>
+                </thead>
+                <tbody id="matrix">
+
+                </tbody>
+            </table>
+
+            <div class="share-button">
+                <a onclick="copyURLToClipboard()">📋 Copy Shareable Link</a>
             </div>
         </div>
 
-        <div class="matrix-section">
-            <div class="chart-title">Maturity Matrix</div>
-                <table>
-                    <thead>
-                        <th>Category</th>
-                        <th>Provisional</th>
-                        <th>Operational</th>
-                        <th>Scalable</th>
-                        <th>Optimizing</th>
-                    </thead>
-                    <tbody id="matrix">
-
-                    </tbody>
-                </table>
-            </div>
-        </div>
     </div>
 
     <script src="app.js"></script>
