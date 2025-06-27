@@ -5,21 +5,21 @@ const centerX = canvas.width / 2;
 const centerY = canvas.height / 2;
 const radius = 120;
 
-// Category data
-const categories = ['Investment', 'Adoption', 'Interfaces', 'Operations', 'Measurement'];
-const scores = {
-    investment: 0,
-    adoption: 0,
-    interfaces: 0,
-    operations: 0,
-    measurement: 0
-};
-const counts = {
-    investment: 0,
-    adoption: 0,
-    interfaces: 0,
-    operations: 0,
-    measurement: 0
+// Categories are used to drive the app
+const categories = {
+    investment: 'Investment',
+    adoption: 'Adoption',
+    interfaces: 'Interfaces',
+    operations: 'Operations',
+    measurement: 'Measurement'
+}
+
+const scores = {}
+const counts = {}
+
+for (let name in categories) {
+    scores[name] = 0;
+    counts[name] = 0;
 }
 
 // Set canvas size
@@ -47,9 +47,11 @@ function drawSpiderChart() {
     ctx.fillStyle = '#4a5568';
     ctx.font = '12px Arial';
     ctx.textAlign = 'center';
+
+    const displayNames = Object.values(categories);
     
-    for (let i = 0; i < categories.length; i++) {
-        const angle = (i * 2 * Math.PI) / categories.length - Math.PI / 2;
+    for (let i = 0; i < displayNames.length; i++) {
+        const angle = (i * 2 * Math.PI) / displayNames.length - Math.PI / 2;
         const x = centerX + Math.cos(angle) * radius;
         const y = centerY + Math.sin(angle) * radius;
         
@@ -62,7 +64,7 @@ function drawSpiderChart() {
         // Draw label
         const labelX = centerX + Math.cos(angle) * (radius + 20);
         const labelY = centerY + Math.sin(angle) * (radius + 20);
-        ctx.fillText(categories[i], labelX, labelY + 5);
+        ctx.fillText(displayNames[i], labelX, labelY + 5);
     }
     
     // Draw level numbers
@@ -79,10 +81,10 @@ function drawSpiderChart() {
         ctx.lineWidth = 3;
         
         ctx.beginPath();
-        for (let i = 0; i < categories.length; i++) {
-            const categoryKey = categories[i].toLowerCase();
+        for (let i = 0; i < displayNames.length; i++) {
+            const categoryKey = displayNames[i].toLowerCase();
             const score = scores[categoryKey] || 0;
-            const angle = (i * 2 * Math.PI) / categories.length - Math.PI / 2;
+            const angle = (i * 2 * Math.PI) / displayNames.length - Math.PI / 2;
             const distance = (score / 4) * radius;
             const x = centerX + Math.cos(angle) * distance;
             const y = centerY + Math.sin(angle) * distance;
@@ -99,10 +101,10 @@ function drawSpiderChart() {
         
         // Draw data points
         ctx.fillStyle = '#667eea';
-        for (let i = 0; i < categories.length; i++) {
-            const categoryKey = categories[i].toLowerCase();
+        for (let i = 0; i < displayNames.length; i++) {
+            const categoryKey = displayNames[i].toLowerCase();
             const score = scores[categoryKey] || 0;
-            const angle = (i * 2 * Math.PI) / categories.length - Math.PI / 2;
+            const angle = (i * 2 * Math.PI) / displayNames.length - Math.PI / 2;
             const distance = (score / 4) * radius;
             const x = centerX + Math.cos(angle) * distance;
             const y = centerY + Math.sin(angle) * distance;
@@ -119,11 +121,11 @@ function drawRow(category, values){
 }
 
 function drawMatrix() {
-    const tableBody = drawRow("Investment", counts.investment) +
-        drawRow("Adoption", counts.adoption) +
-        drawRow("Interfaces", counts.interfaces) +
-        drawRow("Operations", counts.operations) +
-        drawRow("Measurement", counts.measurement);
+    let tableBody = '';
+    
+    for (let name in categories) {
+        tableBody += drawRow(categories[name], counts[name]);
+    }
 
     document.getElementById('matrix').innerHTML = tableBody;
 }
@@ -159,25 +161,13 @@ function calculateCategoryCount(category) {
 }
 
 function updateScores() {
-    // Calculate scores for each category
-    scores.investment = calculateCategoryScore('investment');
-    scores.adoption = calculateCategoryScore('adoption');
-    scores.interfaces = calculateCategoryScore('interfaces');
-    scores.operations = calculateCategoryScore('operations');
-    scores.measurement = calculateCategoryScore('measurement');
-    
-    counts.investment = calculateCategoryCount('investment');
-    counts.adoption = calculateCategoryCount('adoption');
-    counts.interfaces = calculateCategoryCount('interfaces');
-    counts.operations = calculateCategoryCount('operations');
-    counts.measurement = calculateCategoryCount('measurement');
+    for (var name in categories) {
+        scores[name] = calculateCategoryScore(name);
+        counts[name] = calculateCategoryCount(name);
 
-    // Update score displays
-    document.getElementById('investmentScore').textContent = scores.investment.toFixed(1);
-    document.getElementById('adoptionScore').textContent = scores.adoption.toFixed(1);
-    document.getElementById('interfacesScore').textContent = scores.interfaces.toFixed(1);
-    document.getElementById('operationsScore').textContent = scores.operations.toFixed(1);
-    document.getElementById('measurementScore').textContent = scores.measurement.toFixed(1);
+        // Update score displays
+        document.getElementById(`${name}Score`).textContent = scores[name].toFixed(1);
+    }
     
     // Redraw chart
     drawSpiderChart();
