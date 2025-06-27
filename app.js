@@ -169,12 +169,53 @@ function updateScores() {
         document.getElementById(`${name}Score`).textContent = scores[name].toFixed(1);
     }
     
-    // Redraw chart
+    // Redraw charts
     drawSpiderChart();
     drawMatrix();
 }
 
-// Add event listeners to all radio buttons
+function saveStateToURL() {
+    const formData = new FormData(document.getElementById('maturityForm'));
+    const params = new URLSearchParams();
+    
+    for (const [key, value] of formData.entries()) {
+        params.set(key, value);
+    }
+    
+    const newURL = window.location.pathname + '?' + params.toString();
+    window.history.replaceState({}, '', newURL);
+}
+
+function loadStateFromURL() {
+    const params = new URLSearchParams(window.location.search);
+    
+    for (const [key, value] of params.entries()) {
+        const radio = document.querySelector(`input[name="${key}"][value="${value}"]`);
+
+        if (radio) {
+            radio.checked = true;
+
+            // Add selected class to the option
+            radio.closest('.option').classList.add('selected');
+        }
+    }
+
+    updateScores();
+}
+
+function getShareableURL() {
+    return window.location.href;
+}
+
+function copyURLToClipboard() {
+    navigator.clipboard.writeText(window.location.href).then(function() {
+        console.log('URL copied to clipboard');
+    }).catch(function(err) {
+        console.error('Could not copy URL: ', err);
+    });
+}
+
+// Radio button clicks
 document.addEventListener('change', function(e) {
     if (e.target.type === 'radio') {
         // Remove selected class from all options in the same question group
@@ -186,7 +227,12 @@ document.addEventListener('change', function(e) {
         
         // Update scores and chart
         updateScores();
+        saveStateToURL();
     }
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    loadStateFromURL();
 });
 
 // Initial chart draw
