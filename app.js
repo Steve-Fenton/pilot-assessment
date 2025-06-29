@@ -5,19 +5,34 @@ const centerX = canvas.width / 2;
 const centerY = canvas.height / 2;
 const radius = 120;
 
+// Elements
+const maturityForm = document.getElementById('maturity-form')
+const legends = maturityForm.querySelectorAll('legend[data-category]');
+const inputs = maturityForm.querySelectorAll('input');
+
 // Categories are used to drive the app
 const categories = {}
 const scores = {}
 const counts = {}
+let maxValue = 0;
 
-const legends = document.querySelectorAll('legend[data-category]');
+// Legends are used to obtain the list of categories
+// Use: <legend data-category="name">Name</legend>
 legends.forEach(legend => {
     const category = legend.dataset.category;
     const text = legend.innerText;
-    
+
     categories[category] = text;
-        scores[category] = 0;
+    scores[category] = 0;
     counts[category] = 0;
+});
+
+inputs.forEach(input => {
+    const value = parseInt(input.value);
+
+    if (!isNaN(value)) {
+        maxValue = Math.max(maxValue, value);
+    }
 });
 
 // Set canvas size
@@ -115,7 +130,15 @@ function drawSpiderChart() {
 }
 
 function drawRow(category, values){
-    return `<tr><td>${category}</td><td class="heat_${values["1"]}"></td><td class="heat_${values["2"]}"></td><td class="heat_${values["3"]}"></td><td class="heat_${values["4"]}"></td></tr>`;
+    let row = `<tr><td>${category}</td>`;
+    
+    for (let i = 1; i <= maxValue; i++) {
+        row += `<td class="heat_${values[i.toString()]}"></td>`
+    }
+
+    row += '</td>';
+
+    return row;
 }
 
 function drawMatrix() {
@@ -143,13 +166,13 @@ function calculateCategoryScore(category) {
 function calculateCategoryCount(category) {
     const inputs = document.querySelectorAll(`input[name^="${category}_"]:checked`);
     if (inputs.length === 0) return 0;
-    
-    let count = {
-        "1": 0,
-        "2": 0,
-        "3": 0,
-        "4": 0 
-    };
+
+    const count = {};
+
+    for (let i = 1; i <= maxValue; i++){
+        count[i] = 0;
+    }
+
     inputs.forEach(input => {
         const value = parseInt(input.value ?? 0).toString();
         count[value]++
@@ -173,7 +196,7 @@ function updateScores() {
 }
 
 function saveStateToURL() {
-    const formData = new FormData(document.getElementById('maturityForm'));
+    const formData = new FormData(maturityForm);
     const params = new URLSearchParams();
     
     for (const [key, value] of formData.entries()) {
