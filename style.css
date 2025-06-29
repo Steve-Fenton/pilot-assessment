@@ -125,6 +125,7 @@ body {
 
 .share-button {
     padding-block-start: 2em;
+    text-align: center;
 }
 
 .share-button a {

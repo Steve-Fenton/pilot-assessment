@@ -257,14 +257,22 @@
     return window.location.href;
   }
 
-  function copyURLToClipboard() {
+  function revert(elem, text) {
+    elem.innerText = text;
+  }
+
+  function copyURLToClipboard(elem) {
+    const originalText = elem.innerText;
     navigator.clipboard
       .writeText(window.location.href)
       .then(function () {
-        console.log("URL copied to clipboard");
+        elem.innerText = '📋 Copied!';
+        console.log('copied');
+        window.setTimeout(() => revert(elem, originalText), 2000);
       })
       .catch(function (err) {
-        console.error("Could not copy URL: ", err);
+        elem.innerText = 'Failed! Please copy from address bar.';
+        window.setTimeout(() => revert(elem, originalText), 2000);
       });
   }
 
