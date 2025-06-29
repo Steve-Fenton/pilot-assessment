@@ -155,6 +155,19 @@ h2 {
     padding-bottom: var(--spacing-sm);
 }
 
+fieldset {
+    border: 0;
+}
+
+legend {
+    color: var(--text-heading-medium);
+    margin: var(--spacing-3xl) 0 var(--spacing-xl) 0;
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-medium);
+    border-bottom: 3px solid var(--primary-color);
+    padding-bottom: var(--spacing-sm);
+}
+
 table {
     width: var(--table-width);
     margin: 0 auto;

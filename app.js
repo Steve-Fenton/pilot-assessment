@@ -6,13 +6,15 @@ const centerY = canvas.height / 2;
 const radius = 120;
 
 // Categories are used to drive the app
-const categories = {
-    investment: 'Investment',
-    adoption: 'Adoption',
-    interfaces: 'Interfaces',
-    operations: 'Operations',
-    measurement: 'Measurement'
-}
+const categories = {}
+
+const legends = document.querySelectorAll('legend[data-category]');
+legends.forEach(legend => {
+    const category = legend.dataset.category;
+    const text = legend.innerText;
+    
+    categories[category] = text;
+});
 
 const scores = {}
 const counts = {}
