@@ -8,5 +8,45 @@ You can copy the URL to share the form in its current state, for example [this p
 
 ![Screenshot showing the questions, and a results panel with a spider diagram, scores, and heatmap](https://github.com/user-attachments/assets/711c3cd6-678a-41ea-b5ca-f6351a9e7801)
 
+## HTML requirements
 
+The form requires a few items and conventions.
 
+- Use a fieldset to group questions by categories.
+- Use a suffix for each set of radio buttons.
+- Use an integer value that matches the maturity level
+
+```html
+<!-- Form with id of "maturity-form" -->
+<form id="maturity-form">
+
+<fieldset>
+    <!--
+        Legend with:
+        data-category=[internal name of category - must match radio names]
+        text: Display name for category
+     -->
+    <legend data-category="category">Display Name</legend>
+
+    <label>
+        <!--
+            Radio with a name that matches the data-category with a numeric suffix, for example category_1, category_2.
+
+            The value must be an integer.
+        -->
+        <input type="radio" name="category_1" value="1">
+        Option display text
+    </label>
+
+</fieldset>
+
+</form>
+```
+
+For the output, you need the following:
+
+```html
+<canvas id="maturity-spider"></canvas>
+<table id="maturity-matrix"></table>
+<div id="maturity-scores" class="scores"></div>
+```

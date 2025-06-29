@@ -957,32 +957,12 @@
 
       <div class="chart-section">
         <div class="chart-title">Results</div>
-        <canvas id="spiderChart"></canvas>
-        <div class="scores">
-          <div class="score-item">
-            <span class="score-label">Investment:</span>
-            <span class="score-value" id="investmentScore">0.0</span>
-          </div>
-          <div class="score-item">
-            <span class="score-label">Adoption:</span>
-            <span class="score-value" id="adoptionScore">0.0</span>
-          </div>
-          <div class="score-item">
-            <span class="score-label">Interfaces:</span>
-            <span class="score-value" id="interfacesScore">0.0</span>
-          </div>
-          <div class="score-item">
-            <span class="score-label">Operations:</span>
-            <span class="score-value" id="operationsScore">0.0</span>
-          </div>
-          <div class="score-item">
-            <span class="score-label">Measurement:</span>
-            <span class="score-value" id="measurementScore">0.0</span>
-          </div>
-        </div>
-
-        <table id="maturity-matrix">
-        </table>
+        
+        <canvas id="maturity-spider"></canvas>
+        
+        <table id="maturity-matrix"></table>
+        
+        <div id="maturity-scores" class="scores"></div>
 
         <div class="share-button">
           <a onclick="copyURLToClipboard()">📋 Copy Shareable Link</a>
