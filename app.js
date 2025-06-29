@@ -7,6 +7,8 @@ const radius = 120;
 
 // Categories are used to drive the app
 const categories = {}
+const scores = {}
+const counts = {}
 
 const legends = document.querySelectorAll('legend[data-category]');
 legends.forEach(legend => {
@@ -14,15 +16,9 @@ legends.forEach(legend => {
     const text = legend.innerText;
     
     categories[category] = text;
+        scores[category] = 0;
+    counts[category] = 0;
 });
-
-const scores = {}
-const counts = {}
-
-for (let name in categories) {
-    scores[name] = 0;
-    counts[name] = 0;
-}
 
 // Set canvas size
 canvas.width = 350;
