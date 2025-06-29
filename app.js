@@ -9,6 +9,7 @@ const radius = 120;
 const maturityForm = document.getElementById('maturity-form')
 const legends = maturityForm.querySelectorAll('legend[data-category]');
 const inputs = maturityForm.querySelectorAll('input');
+const matrix = document.getElementById('maturity-matrix');
 
 // Categories are used to drive the app
 const categories = {}
@@ -133,7 +134,7 @@ function drawRow(category, values){
     let row = `<tr><td>${category}</td>`;
     
     for (let i = 1; i <= maxValue; i++) {
-        row += `<td class="heat_${values[i.toString()]}"></td>`
+        row += `<td class="heat_${values[i.toString()]}"> </td>`
     }
 
     row += '</td>';
@@ -142,13 +143,21 @@ function drawRow(category, values){
 }
 
 function drawMatrix() {
-    let tableBody = '';
+    let table = `<thead><th></th>`;
+
+    for (let i = 1; i <= maxValue; i++) {
+        table += `<th width="40">${i}</th>`
+    }
+    
+    table += `</thead><tbody>`;
     
     for (let name in categories) {
-        tableBody += drawRow(categories[name], counts[name]);
+        table += drawRow(categories[name], counts[name]);
     }
 
-    document.getElementById('matrix').innerHTML = tableBody;
+    table += `</tbody>`
+
+    matrix.innerHTML = table;
 }
 
 function calculateCategoryScore(category) {

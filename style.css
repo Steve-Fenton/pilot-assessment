@@ -60,7 +60,7 @@
     --container-max-width: 1400px;
     --sidebar-width: 400px;
     --chart-height: 350px;
-    --table-width: 80%;
+    --table-width: 100%;
     
     /* Input Sizes */
     --radio-size: 20px;
@@ -170,24 +170,10 @@ legend {
 
 table {
     width: var(--table-width);
-    margin: 0 auto;
+    margin-inline: auto;
+    margin-block-start: var(--spacing-xl);
+    padding: var(--spacing-xl);
     table-layout: fixed;
-}
-
-.rotated-header {
-  height: 120px;
-  width: 40px;
-  vertical-align: bottom;
-  text-align: center;
-  padding: 0;
-}
-
-.rotated-header div {
-  transform: rotate(90deg) translateX(-50px) translateY(45px); /* Adjust -20px as needed */
-  transform-origin: center bottom;
-  white-space: nowrap;
-  width: 120px;
-  margin: 0 auto;
 }
 
 td {
@@ -235,7 +221,7 @@ td {
 }
 
 .option input[type="radio"] {
-    margin-top: 2px;
+    margin-block-start: 2px;
     width: var(--radio-size);
     height: var(--radio-size);
     accent-color: var(--primary-color);
@@ -264,7 +250,7 @@ td {
 #spiderChart {
     width: 100%;
     height: var(--chart-height);
-    margin-top: var(--spacing-xl);
+    margin-block-start: var(--spacing-xl);
 }
 
 .chart-title {
@@ -276,7 +262,7 @@ td {
 }
 
 .scores {
-    margin-top: var(--spacing-xl);
+    margin-block-start: var(--spacing-xl);
     padding: var(--spacing-xl);
     background: var(--bg-primary-medium);
     border-radius: var(--radius-sm);
